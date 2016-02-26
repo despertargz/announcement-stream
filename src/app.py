@@ -36,8 +36,16 @@ def post():
 def stream(ws):
     sockets.append(ws)
     print("connected!")
-    while True:
-        msg = ws.receive()
+
+    try:
+        while True:
+            msg = ws.receive()
+    except Exception as e:
+        print("Error receiving!")
+        print(e)
+        sockets.remove(ws)
+
+
 
 
 
