@@ -10,17 +10,26 @@
 
     <style>
         .newText { font-weight: bold; }
-        .text { font-weight: 40px; }
+        .text { font-size: 45px; }
     </style>
 </head>
-<body style="padding:10px;">
-    <!--<h1>Stream</h1>-->
-    <div id='messages'></div>
+
+<body >
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Dev Announcements</a>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+    <div style="padding-left: 10px; padding-right: 10px;" id='messages'></div>
 
 
 
 <script>
-    var newMsgTime = 600000;
+    var newMsgTime = 60000;
 
     function addMsg(msg) {
         var date = moment().format('MMMM Do, h:mm:ss a'); // February 26th, 1:14:36 am
