@@ -15,11 +15,16 @@
 
 <script>
     function addMsg(msg) {
-
         var date = moment().format('MMMM Do, h:mm:ss a'); // February 26th, 1:14:36 am
-        $("#messages").prepend(
-        "<div class='panel panel-primary'><div class='panel-heading'>" + date + "</div>" +
-        "<div class='panel-body'><p>" + msg.data + "</p></div></div>");
+
+        var newMsgPanel = $("<div class='panel panel-success'><div class='panel-heading'>" + date + "</div>" +
+            "<div class='panel-body'><p>" + msg.data + "</p></div></div>");
+
+        $("#messages").prepend(newMsgPanel);
+
+        setTimeout(function() {
+            newMsgPanel.removeClass("panel-success").addClass("panel-primary");
+        }, 5000);
     }
 
     var socket = new WebSocket("ws://" + window.location.hostname + ":8000/stream");
