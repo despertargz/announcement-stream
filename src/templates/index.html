@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body style="padding:10px;">
-    <h1>Stream</h1>
+    <!--<h1>Stream</h1>-->
     <div id='messages'></div>
 
 
@@ -27,7 +27,7 @@
         }, 5000);
     }
 
-    var socket = new WebSocket("ws://" + window.location.hostname + ":8000/stream");
+    var socket = new WebSocket("ws://" + window.location.hostname + ":7579/stream");
     socket.onmessage = function(msg) {
         console.log("got msg from server: " + msg.data);
         addMsg(msg);
