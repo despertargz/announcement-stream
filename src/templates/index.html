@@ -7,24 +7,49 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <style>
+        .newText { font-weight: bold; }
+        .text { font-weight: 40px; }
+    </style>
 </head>
 <body style="padding:10px;">
     <!--<h1>Stream</h1>-->
     <div id='messages'></div>
 
 
+
 <script>
+    var newMsgTime = 600000;
+
     function addMsg(msg) {
         var date = moment().format('MMMM Do, h:mm:ss a'); // February 26th, 1:14:36 am
 
-        var newMsgPanel = $("<div class='panel panel-success'><div class='panel-heading'>" + date + "</div>" +
-            "<div class='panel-body'><p>" + msg.data + "</p></div></div>");
+        var newMsgPanel = $(
+            "<div class='panel panel-success'><div class='panel-heading'><span class='age'>0</span><span> minutes</span><span> ago - </span>" + date + "</div>" +
+            "<div class='panel-body'><p class='text newText'>" + msg.data + "</p></div></div>"
+        );
 
         $("#messages").prepend(newMsgPanel);
 
         setTimeout(function() {
-            newMsgPanel.removeClass("panel-success").addClass("panel-primary");
-        }, 5000);
+            newMsgPanel
+                .removeClass("newText")
+                .removeClass("panel-success")
+                .addClass("panel-primary");
+
+            newMsgPanel.find(".text").removeClass("newText");
+        }, newMsgTime);
+
+        setInterval(function() {
+            $(".age").each(function(i,o) {
+                var currentAge = parseInt($(o).text());
+
+                $(o).text(currentAge + 1);
+                $(o).next().text
+
+            });
+        }, 60000);
     }
 
     var socket = new WebSocket("ws://" + window.location.hostname + ":7579/stream");
